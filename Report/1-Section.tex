@@ -1,0 +1,54 @@
+\section{Solution}
+\label{chapter1}
+
+Consider the initial value problem with the ODE of the first order and some interval:
+$$\left\lbrace \begin{array}{ll} y'=f(x,y)=(1 + \frac{y}{x}) \ln \frac{x+y}{x} + \frac{y}{x} \\ y(x_0)=y_0 \\ x\in [x_0, X] \end{array}\right.$$
+
+Obviously, $f(x,y)$ is defined when $x\neq 0$ and $\frac{x+y}{x} > 0$
+
+\subsection{Exact solution}
+
+Let $r = \frac{y}{x}$, $y'=(1+\frac{y}{x}\ln \frac{x+y}{x} + \frac{y}{x}$ becomes: $r'x+r=(1+r)\ln (1+r) + r$
+
+$$\Rightarrow \frac{dr}{(1+r)\ln (1+r)}=\frac{dr}{x}$$
+
+$$\Rightarrow \int_{\frac{y_0}{x_0}}^{r} \frac{dr}{(1+r)\ln (1+r)} = \int_{x_0}^{x}\frac{dx}{x}$$
+
+$$\Rightarrow \ln \frac{\ln (1+r)}{\ln (1+\frac{y_0}{x_0}} = \ln \frac{x}{x_0}$$
+
+$$\Rightarrow y = x(1+\frac{y_0}{x_0}^\frac{x}{x_0} - x$$
+
+Therefore, $y=x(1+\frac{y_0}{x_0}^\frac{x}{x_0}-x$ where $x\neq 0$ and $\frac{x+y}{x} > 0$ is the exact solution of $y'=(1+\frac{y}{x})\ln \frac{x+y}{x} + \frac{y}{x}$
+
+\subsection{Numerical Methods}
+
+We are interested in computing approximate values of solutions of $y'=f(x,y)$, $y(x_0)=y_0$ at equally spaced points $x_0, x_1,..,x_n=X$ in an interval $[x_0, X]$. 
+$$x_i = x_0 + ih, i = 0, 1,...,n \text{ where } h=\frac{X-x_0}{n}$$
+
+Local error (error at the $i$th step): $e_i = y(x_i)-y_i$
+
+Global error: $e = e_n = y(X)-y_n$
+
+\subsubsection{Euler Method}
+
+Euler method is the simplest numerical method which is based on the assumption that the tangent line at $(x_i, y(x_i)$ approximate the integral curve over $[x_i, x_{i+1}]$. It starts with the known value $y(x_0) = x_0$ and computes $y_1, y_2,...,y_n$ by the formula:
+
+$$y_{i+1} = y_i + hf(x_i, y_i) \text{ , }0\leq i\leq n-1$$
+
+\subsubsection{Improved Euler Method}
+
+The improved Euler method starts with the known value $y(x_0) = x_0$ and computes $y_1, y_2,...,y_n$ by the formula:
+
+$$k_{1i} = f(x_i, y_i)$$
+$$k_{2i} = f(x_i + h, y_i + hk_{1i})$$
+$$y_{i+1} = y_i + \frac{h}{2}(k_{1i} + k_{2i})$$
+
+\subsubsection{Runge-Kutta Method}
+
+Runge-Kutta is the most widely method. It starts with the known value $y(x_0) = x_0$ and computes $y_1, y_2,...,y_n$ by the formula:
+
+$$k_{1i} = f(x_i, y_i)$$
+$$k_{2i} = f(x_i + \frac{h}{2}, y_i + \frac{h}{2}k_{1i})$$
+$$k_{3i} = f(x_i + \frac{h}{2}, y_i + \frac{h}{2}k_{2i})$$
+$$k_{4i} = f(x_i + h, y_i + hk_{3i}$$
+$$y_{i+1} = y_i + \frac{h}{6}(k_{1i} + 2k_{2i} + 2k_{3i} + k_{4i})$$
