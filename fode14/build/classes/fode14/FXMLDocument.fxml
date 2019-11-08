@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<SplitPane dividerPositions="0.3" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="660.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fode14.FXMLDocumentController">
+  <items>
+      <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="210.0" spacing="10.0">
+         <children>
+            <Label text="y' = (1+y/x)ln((x+y)/x) + y/x">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label id="mess" fx:id="mess" text="Exact solution: y = x (1+y0/x0)^(x/x0)" />
+            <HBox alignment="CENTER" spacing="40.0">
+               <children>
+                  <HBox alignment="CENTER" maxWidth="150.0" minWidth="150.0" spacing="3.0">
+                     <children>
+                        <Label maxWidth="20.0" text="x0:" />
+                        <TextField id="x0" prefWidth="110.0" text="1.0" fx:id="x0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="150.0" minWidth="150.0" spacing="3.0">
+                     <children>
+                        <Label maxWidth="20.0" text="y0:" />
+                        <TextField id="y0" fx:id="y0" prefWidth="110.0" text="2.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label maxWidth="20.0" text="X:" />
+                        <TextField id="x" prefWidth="110.0" text="6.0" fx:id="x" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" spacing="3.0">
+                     <children>
+                        <Label maxWidth="20.0" text="N:" />
+                        <TextField id="n" fx:id="n" prefWidth="110.0" text="10" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" maxWidth="400.0" spacing="3.0">
+                     <children>
+                        <Label minWidth="80.0" text="Grid range:" />
+                        <Label minWidth="35.0" text="from" />
+                        <TextField id="n1" fx:id="n1" text="5" />
+                        <Label minWidth="20.0" text="to" />
+                        <TextField id="n2" fx:id="n2" text="30" />
+                        <Label layoutX="104.0" layoutY="14.0" minWidth="30.0" text="step" />
+                        <TextField id="step" fx:id="step" layoutX="109.0" layoutY="10.0" text="2" />
+                     </children>
+                  </HBox>
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="28.0" spacing="45.0">
+               <children>
+                  <CheckBox id="exact" fx:id="exact" mnemonicParsing="false" prefWidth="160.0" selected="true" text="Exact" />
+                  <CheckBox id="euler" fx:id="euler" mnemonicParsing="false" prefWidth="160.0" selected="true" text="Euler" />
+                  <CheckBox id="improvedEuler" fx:id="improvedEuler" mnemonicParsing="false" prefWidth="160.0" selected="true" text="Improved Euler" />
+                  <CheckBox id="rungeKutta" fx:id="rungeKutta" mnemonicParsing="false" prefWidth="160.0" selected="true" text="Runge-Kutta" />
+               </children>
+            </HBox>
+            <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="138.0" spacing="45.0">
+               <children>
+                  <Label id="gErrorLabel" fx:id="gErrorLabel" prefWidth="160.0" text="Global Error (N = 10):" />
+                  <Label id="eulerErrror" fx:id="eulerError" layoutX="544.0" layoutY="10.0" prefWidth="160.0" />
+                  <Label id="improvedEulerError" fx:id="improvedEulerError" layoutX="632.0" layoutY="10.0" prefWidth="160.0" />
+                  <Label id="rungeKuttaError" fx:id="rungeKuttaError" layoutX="720.0" layoutY="10.0" prefWidth="160.0" />
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="68.0" spacing="50.0">
+               <children>
+                  <Button id="reset" fx:id="reset" minWidth="70.0" mnemonicParsing="false" onAction="#handleResetButtonAction" text="Reset" />
+                  <Button id="draw" fx:id="draw" minWidth="70.0" mnemonicParsing="false" onAction="#handleDrawButtonAction" text="Draw" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <SplitPane dividerPositions="0.33, 0.66" prefHeight="160.0" prefWidth="200.0">
+        <items>
+            <LineChart id="solution" fx:id="solution" animated="false" title="Solution">
+              <xAxis>
+                <NumberAxis label="x" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis label="y" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart id="error" fx:id="error" animated="false" title="Local Error">
+              <xAxis>
+                <NumberAxis label="x" side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis label="local error" side="LEFT" />
+              </yAxis>
+            </LineChart>
+            <LineChart id="grid" fx:id="grid" animated="false" layoutX="10.0" layoutY="10.0" title="Global Error Analysis">
+               <xAxis>
+                  <NumberAxis label="grid size" side="BOTTOM" />
+               </xAxis>
+               <yAxis>
+                  <NumberAxis label="global error" side="LEFT" />
+               </yAxis>
+            </LineChart>
+        </items>
+      </SplitPane>
+  </items>
+</SplitPane>

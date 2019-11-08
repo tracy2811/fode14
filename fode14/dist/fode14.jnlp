@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="fode14.jnlp">
+  <information>
+    <title>fode14</title>
+    <vendor>trang</vendor>
+    <description>null</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="fode14.jar" size="8731" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="800" height="600" main-class="fode14.Main"  name="fode14" />
+  <update check="always"/>
+</jnlp>
