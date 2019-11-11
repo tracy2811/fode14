@@ -1,4 +1,4 @@
 # fode14
 
-* [Report](./Report/Report.pdf)
+* Report: [pdf](./Report.pdf), [latex](./Report)
 * [Application](./fode14)
